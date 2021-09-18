@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pokemon API</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="https://unpkg.com/vue@3.0.2"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>Pokemon Stats</h1>
+            <input type="text" id="pokemon" v-model='pokemon' @keyup.enter='getPokemon(pokemon)' placeholder="Choose your Pokemon">
+            <button @click="getPokemon(pokemon)">Get Stats</button>
+            <h2>{{ poke }}</h2>
+            <ul v-if='show'>
+                <li>{{ baseHP }}</li>
+                <li>{{ attack }}</li>
+                <li>{{ defense }}</li>
+                <li>{{ spAttack }}</li>
+                <li>{{ spDefense }}</li>
+                <li>{{ speed }}</li>
+            </ul>
+            <img v-bind:src=imgURL>
+        </div>
+        <script src="app.js"></script>
+    </body>
+</html>
