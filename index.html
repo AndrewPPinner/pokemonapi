@@ -14,9 +14,10 @@
         <div id="app">
             <h1>Pokemon Stats</h1>
             <div>
-                <div class="input-group flex-nowrap">
-                    <input type="text" class="form-control" aria-label="Pokemon" aria-describedby="addon-wrapping" id="pokemon" v-model='pokemon' @keyup.enter='getPokemon(pokemon)' placeholder="Choose your Pokemon" style="max-width:38%;">
-              </div>
+                <input v-model='pokemon' class="form-control" list="datalistOptions" id="exampleDataList" @keyup.enter='getPokemon(pokemon)' placeholder="Choose your Pokemon" style="max-width:38%;">
+                  <datalist id="datalistOptions">
+                    <option v-for='poke in pokeArray' v-bind:value="poke.value">
+                  </datalist>
               <button style="margin-top: .5rem;" class="btn btn-success" @click="getPokemon(pokemon)">Get Stats</button>
             </div>
             <div v-if='show' class="card text-white bg-secondary mb-3" style="width: 18rem; margin-top: .5rem;">
@@ -25,14 +26,8 @@
                   <h5 class="card-title">{{ poke }}</h5>
                 </div>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">{{ baseHP }}</li>
-                  <li class="list-group-item">{{ attack }}</li>
-                  <li class="list-group-item">{{ defense }}</li>
-                  <li class="list-group-item">{{ spAttack }}</li>
-                  <li class="list-group-item">{{ spDefense }}</li>
-                  <li class="list-group-item">{{ speed }}</li>
-                  <li class="list-group-item">{{ ability1 }}</li>
-                  <li class="list-group-item">{{ ability2 }}</li>
+                  <li v-for='stat in stats' class="list-group-item">{{ stat.stat.name + ':' }} {{ stat.base_stat }}</li>
+                  <li v-for='abilities in ability' class="list-group-item">{{ abilities.ability.name }}</li>
                 </ul>
               </div>
         </div>
